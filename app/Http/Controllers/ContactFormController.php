@@ -22,8 +22,9 @@ class ContactFormController extends Controller
             'last_name' => $request->get('last_name'),
             'email' => $request->get('email'),
             'msg' => $request->get('message'),
-            'subject' => "Nouveau message"
+            'subject' => "Réservation confirmé 🥳"
         ];
+        //md5(uniqid(true));
 
         DB::table('contacts')->insert([
             'first_name' => $params['first_name'],
@@ -32,15 +33,14 @@ class ContactFormController extends Controller
             'message' => $params['msg']
         ]);
 
-        //Mail::to(Config::get('contact.email'), Config::get('contact.name'))->send(new Contact($params));
+        Mail::to(Config::get('contact.email'), Config::get('contact.name'))->send(new Contact($params));
 
-        /*
+/*
         Mail::send('emails.contact', $params, function ($m) use ($params) {
             $m->from($params['email'], $params['first_name'] . ' ' . $params['last_name']);
             $m->to('julie@webstart.com', 'Julie de Webstart')->subject('Nouveau essage');
         });
-        */
-
+*/
         return redirect('contact')
             ->with('status', 'Your message has been sent!');
     }

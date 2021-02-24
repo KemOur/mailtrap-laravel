@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <p>Nouveau message</p>
+    <p>Reservation confirmé 🤝 </p>
 
     <ul>
         <li>Nom : {{ $first_name }} {{ $last_name }}</li>
